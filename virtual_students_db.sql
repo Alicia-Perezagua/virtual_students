@@ -3,7 +3,7 @@ CREATE DATABASE virtual_students;
 USE virtual_students;
 
 CREATE TABLE configuracion_del_sitio(
-	id_sitio INT NOT NULL, 
+	id_sitio INT NOT NULL AUTO_INCREMENT, 
 	titulo_sitio VARCHAR(255) NOT NULL,
     
     PRIMARY KEY(id_sitio)
@@ -12,7 +12,7 @@ CREATE TABLE configuracion_del_sitio(
     
 
 CREATE TABLE centros_educativos(
-	id_centro INT NOT NULL,
+	id_centro INT NOT NULL AUTO_INCREMENT,
     nombre_centro VARCHAR(255) NOT NULL, 
     direccion VARCHAR(255) NOT NULL, 
     postal_code INT(5) NOT NULL, 
@@ -26,7 +26,7 @@ CREATE TABLE centros_educativos(
 );
 
 CREATE TABLE ciclos_formativos(
-	id_ciclo INT NOT NULL, 
+	id_ciclo INT NOT NULL AUTO_INCREMENT, 
     nombre_ciclo VARCHAR(255) NOT NULL, 
     descripcion TEXT(65535) NOT NULL,
     num_cursos INT NOT NULL, 
@@ -38,7 +38,7 @@ CREATE TABLE ciclos_formativos(
 );
 
 CREATE TABLE modulos(
-	id_modulo INT NOT NULL, 
+	id_modulo INT NOT NULL AUTO_INCREMENT, 
     nombre_modulo VARCHAR(255) NOT NULL,
     descripcion TEXT(65535) NOT NULL,
     horas_totales INT NOT NULL, 
@@ -49,7 +49,7 @@ CREATE TABLE modulos(
 );
 
 CREATE TABLE usuarios(
-	id_user INT NOT NULL, 
+	id_user INT NOT NULL AUTO_INCREMENT, 
     username VARCHAR(255) NOT NULL, 
     _password VARCHAR(255) NOT NULL, 
     nombre_usuario VARCHAR(255) NOT NULL, 
@@ -71,7 +71,7 @@ CREATE TABLE usuarios(
 );
     
 CREATE TABLE alumnos(
-	id_alumno INT NOT NULL, 
+	id_alumno INT NOT NULL AUTO_INCREMENT, 
     nia INT NOT NULL, 
     id_user_fk INT NOT NULL,
     
@@ -80,11 +80,11 @@ CREATE TABLE alumnos(
     FOREIGN KEY(id_user_fk)
 		REFERENCES usuarios(id_user)
 			ON UPDATE CASCADE
-            ON DELETE CASCADE
+            		ON DELETE CASCADE
 );
 
 CREATE TABLE profesores(
-	id_profesor INT NOT NULL,
+	id_profesor INT NOT NULL AUTO_INCREMENT,
     nrp INT NOT NULL, 
     salario INT NULL, 
     email_docente VARCHAR(255) NOT NULL, 
@@ -95,12 +95,30 @@ CREATE TABLE profesores(
     FOREIGN KEY(id_user_fk)
 		REFERENCES usuarios(id_user)
 			ON UPDATE CASCADE
-            ON DELETE CASCADE
+            		ON DELETE CASCADE
             
 );
 
+CREATE TABLE correspondencia_profesores_modulos(
+	id_profesor_fk INT NOT NULL,
+	id_modulo_fk INT NOT NULL, 
+	
+	PRIMARY KEY(id_profesor_fk, id_modulo_fk), 
+	
+	FOREIGN KEY(id_profesor_fk)
+		REFERENCES profesores(id_profesor)
+			ON DELETE CASCADE
+			ON UPDATE CASCADE, 
+	
+	FOREIGN KEY(id_modulo_fk)
+		REFERENCES modulos(id_modulo)
+			ON UPDATE CASCADE
+			ON DELETE CASCADE
+	
+);
+
 CREATE TABLE padres_de_alumnos(
-	id_padre INT NOT NULL, 
+	id_padre INT NOT NULL AUTO_INCREMENT, 
     parentesco VARCHAR(255) NOT NULL, 
     id_alumno_fk INT NOT NULL, 
     id_user_fk INT NOT NULL, 
@@ -110,12 +128,12 @@ CREATE TABLE padres_de_alumnos(
     FOREIGN KEY(id_alumno_fk)
 		REFERENCES alumnos(id_alumno)
 			ON UPDATE CASCADE
-            ON DELETE CASCADE, 
+            		ON DELETE CASCADE, 
             
 	FOREIGN KEY(id_user_fk)
 		REFERENCES usuarios(id_user)
 			ON UPDATE CASCADE
-            ON DELETE CASCADE
+            		ON DELETE CASCADE
 );
 
 CREATE TABLE correspondecia_ciclos_modulos(
@@ -127,16 +145,16 @@ CREATE TABLE correspondecia_ciclos_modulos(
     FOREIGN KEY(id_modulo_fk)
 		REFERENCES modulos(id_modulo)
 			ON UPDATE CASCADE
-            ON DELETE CASCADE, 
+            		ON DELETE CASCADE, 
             
 	FOREIGN KEY(id_ciclo_fk)
 		REFERENCES ciclos_formativos(id_ciclo)
 			ON UPDATE CASCADE
-            ON DELETE CASCADE
+            		ON DELETE CASCADE
 );
 
 CREATE TABLE documentos(
-	id_documento INT NOT NULL, 
+	id_documento INT NOT NULL AUTO_INCREMENT, 
     nombre VARCHAR(255) NOT NULL, 
     entidad_reguladora VARCHAR(255) NOT NULL, 
     fecha_expedicion DATE NOT NULL, 
@@ -154,7 +172,7 @@ CREATE TABLE documentos(
 );
 
 CREATE TABLE tareas_recursos_examenes(
-	id_tre INT NOT NULL,
+	id_tre INT NOT NULL AUTO_INCREMENT,
     nombre VARCHAR(255) NOT NULL, 
     categoria VARCHAR(255) NOT NULL, /* Si es tarea, recurso o examen*/ 
     fecha_subida DATE NOT NULL,
@@ -171,12 +189,12 @@ CREATE TABLE tareas_recursos_examenes(
     FOREIGN KEY(id_profesor_fk)
 		REFERENCES profesores(id_profesor)
 			ON UPDATE CASCADE
-            ON DELETE SET NULL,
+            		ON DELETE SET NULL,
             
 	FOREIGN KEY(id_modulo_fk)
 		REFERENCES modulos(id_modulo)
 			ON UPDATE CASCADE
-            ON DELETE CASCADE
+            		ON DELETE CASCADE
             
 );
 
@@ -232,22 +250,22 @@ CREATE TABLE matriculaciones(
     FOREIGN KEY(id_user_fk)
 		REFERENCES usuarios(id_user)
 			ON UPDATE CASCADE
-            ON DELETE CASCADE, 
+            		ON DELETE CASCADE, 
             
 	FOREIGN KEY(id_centro_fk)
 		REFERENCES centros_educativos(id_centro)
 			ON UPDATE CASCADE
-            ON DELETE CASCADE, 
+            		ON DELETE CASCADE, 
             
 	FOREIGN KEY(id_ciclo_fk)
 		REFERENCES ciclos_formativos(id_ciclo)
 			ON UPDATE CASCADE
-            ON DELETE CASCADE, 
+			ON DELETE CASCADE, 
             
 	FOREIGN KEY(id_modulo_fk)
 		REFERENCES modulos(id_modulo)
 			ON UPDATE CASCADE
-            ON DELETE CASCADE
+            		ON DELETE CASCADE
             
 );
     
