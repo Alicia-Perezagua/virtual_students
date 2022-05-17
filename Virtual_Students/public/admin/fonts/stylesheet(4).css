@@ -1,0 +1,13 @@
+@font-face {
+    font-family: 'Moonlily Demo Version';
+    src: url('MoonlilyDemoVersion.eot');
+    src: url('MoonlilyDemoVersion.eot?#iefix') format('embedded-opentype'),
+        url('MoonlilyDemoVersion.woff2') format('woff2'),
+        url('MoonlilyDemoVersion.woff') format('woff'),
+        url('MoonlilyDemoVersion.ttf') format('truetype'),
+        url('MoonlilyDemoVersion.svg#MoonlilyDemoVersion') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
