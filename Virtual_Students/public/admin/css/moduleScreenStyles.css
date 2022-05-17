@@ -42,3 +42,12 @@
 .descripcion{
     width: 64%;
 }
+
+.archivo_descargable{
+    color: white;
+    transition: 0.3s;
+}
+
+.archivo_descargable:hover{
+    color: lightseagreen;
+}
