@@ -24,3 +24,25 @@
     width: 75px;
     padding: 0;
 }
+.boton-descripcion{
+    color: black;
+    font-size: 40px;
+    padding: 0;
+}
+.cabeceras, .titulo-tarea, .titulo-recurso{
+    font-size: 20px;
+    font-family: 'Patrick Hand', cursive;
+}
+
+.descripcion{
+    width: 64%;
+}
+
+.archivo_descargable{
+    color: white;
+    transition: 0.3s;
+}
+
+.archivo_descargable:hover{
+    color: lightseagreen;
+} 

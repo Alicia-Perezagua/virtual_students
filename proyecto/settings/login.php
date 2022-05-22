@@ -1,6 +1,6 @@
 <?php
-require_once( 'config.php');
-require_once(  'conexionDB.php');
+require_once('config.php');
+require_once('conexionDB.php');
 require_once("sesion.php");
 
 $user_name=$_GET["name"];
@@ -11,9 +11,9 @@ $sql ="SELECT * FROM usuarios WHERE username='".$user_name."'";
 $res = $mysql->search($sql);
 if(sesion_usuario()==null){
     if($res!=null){
-        if($res[0]["_password"]==$password){
+        if(password_verify($password,$res[0]["_password"])){
             echo"felicidades ha iniciado sesion con exito";
-            in_error(null);
+            null_error();
             abrir_sesion($user_name);
             header("Location:../public/admin/index.php");
         }else{

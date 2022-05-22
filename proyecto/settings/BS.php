@@ -1,4 +1,9 @@
 <?php
 //convertir contraseña introducida por el usuario en un hash
-$contrasennaHash= password_hash($Contrasenna,PASSWORD_DEFAULT);
+function hash_change($password){
+    $password_hash= password_hash($password,PASSWORD_DEFAULT);
+    return $password_hash;
+}
+
+echo hash_change(1234);
 ?>

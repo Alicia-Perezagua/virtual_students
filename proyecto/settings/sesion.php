@@ -33,4 +33,7 @@
         }
         return $fin ;
     }
+    function null_error(){
+        $_SESSION['error']=null;
+    }
 ?>
