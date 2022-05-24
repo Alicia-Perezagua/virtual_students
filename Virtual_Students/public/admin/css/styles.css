@@ -28,6 +28,8 @@
     background-image: linear-gradient(rgb(93, 93, 170), rgb(18, 214, 149)); 
     height: 55px;
     width: 100%;
+    position: fixed;
+    z-index: 100;
 }
 
 .list-unstyled{
@@ -57,7 +59,7 @@
 }
 
 .hero{
-    height: 91.5vh;
+    height: 100vh;
     background-image: url(../images/pang-yuhao-_kd5cxwZOK4-unsplash.jpg);
     background-repeat: no-repeat;
     background-size: cover;

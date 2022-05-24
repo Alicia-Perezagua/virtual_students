@@ -4,12 +4,13 @@
     background-size: cover;
     background-position: top center;
     background-repeat: no-repeat;
-    background-position: fixed; 
+    background-attachment: fixed;
+    padding-top: 55px;
 }
 
 .contenedor-formulario{
     width: 100%;
-    height: 90vh;
+    height: 100vh;
 }
 
 form{
@@ -56,5 +57,9 @@ form{
     background-image: linear-gradient(rgb(253, 107, 253), rgb(250, 89, 89));
     border: 2px solid white;
     color: white; 
+}
+
+.prueba{
+    height: 2000px;
 }
 

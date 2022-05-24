@@ -4,13 +4,14 @@
     background-size: cover;
     background-position: top center;
     background-repeat: no-repeat;
-    background-position: fixed; 
+    background-attachment: fixed; 
 }
 
 .tranparencia-modulo{
-    width: 100%; 
-    height: 100vh;
+    padding-top: 55px;
+    width: 100%;
     background-color: rgba(255, 255, 255, 0.3);
+    background-attachment: scroll;
 }
 
 .breadcrumbs_menu{
@@ -19,6 +20,10 @@
 
 .breadcrumbs_menu > ol{
     background-color: transparent; 
+}
+
+#accordion{
+    margin-bottom: 308px;
 }
 
 .botones-modulos{
@@ -50,4 +55,8 @@
 
 .archivo_descargable:hover{
     color: lightseagreen;
+}
+
+.addRecurso{
+   display: none; 
 }

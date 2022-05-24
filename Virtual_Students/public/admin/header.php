@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="./css/login_styles.css">
 <link rel="stylesheet" href="./css/moduleScreenStyles.css">
 <link rel="stylesheet" href="./css/menus_styles.css">
+<link rel="stylesheet" href="./css/modulosC_Styles.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
