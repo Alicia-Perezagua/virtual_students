@@ -14,7 +14,7 @@ if(sesion_usuario()==null){
         if(password_verify($password,$res[0]["_password"])){
             echo"felicidades ha iniciado sesion con exito";
             null_error();
-            abrir_sesion($user_name);
+            abrir_sesion($res[0]["id_user"],$res[0]["categoria"]);
             header("Location:../public/admin/index.php");
         }else{
             in_error("la contraseña es incorrecta verificque que no tenga las mayusculas activadas o que no haya repetido caracteres");

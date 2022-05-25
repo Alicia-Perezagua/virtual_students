@@ -1,11 +1,11 @@
 <?php
-    // cuando se registra o se loguea
+    // usuario
     session_start();
-    function abrir_sesion($usuario)
+    function abrir_sesion($id,$rol)
     {
-        $_SESSION['usuario']=$usuario;
+        $_SESSION['id']=$id;
+        $_SESSION['rol']=$rol;
     }
-    // log out
     function cerrar_sesion()
     {
         $_SESSION=Array();
@@ -13,12 +13,18 @@
         header("location:../index.php");
     }
     function sesion_usuario(){
-        if(isset($_SESSION['usuario'])){
-            $fin=$_SESSION['usuario'];
+        if(isset($_SESSION['id'])){
+            $fin=$_SESSION['id'];
         }else{
             $fin=null;
         }
         return $fin ;
+    }
+    function out_usuario_id(){
+        return $_SESSION['id'];
+    }
+    function out_usuario_rol(){
+        return $_SESSION['rol'];
     }
     //error
     function in_error($error)
