@@ -7,5 +7,6 @@
       </div>
     </div>
   </div>
-
+  <p>
+  </p>
   <?php include "footer.php" ?>
