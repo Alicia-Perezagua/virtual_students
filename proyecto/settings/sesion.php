@@ -1,4 +1,5 @@
 <?php
+$ajax=null;
     // usuario
     session_start();
     function abrir_sesion($id,$rol)
@@ -41,5 +42,18 @@
     }
     function null_error(){
         $_SESSION['error']=null;
+    }
+    // ajax
+
+    switch($ajax){
+        case "recogerRol":
+            echo out_usuario_rol();
+            break;
+        case "recogerId":
+            echo out_usuario_rol();
+            break;
+        case "recogerError":
+            echo out_error();
+            break;
     }
 ?>
