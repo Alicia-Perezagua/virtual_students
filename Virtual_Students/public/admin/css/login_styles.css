@@ -13,7 +13,7 @@
     height: 100vh;
 }
 
-form{
+.formulario-login{
     width: 33%;
     border-radius: 30px;
     background-image: linear-gradient(rgb(93, 93, 170), rgb(18, 214, 149));

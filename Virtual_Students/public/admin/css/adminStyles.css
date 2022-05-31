@@ -1,0 +1,18 @@
+.funcionalidades{
+    height: 100vh;
+    padding-top: 70px;
+}
+
+.botones-admin{
+    height: 50px;
+    border-radius: 30px;
+    border: 0.5px solid black;
+}
+
+.datos-user{
+    width: 50%;
+}
+
+.addTeacher{
+    height:300px;
+}

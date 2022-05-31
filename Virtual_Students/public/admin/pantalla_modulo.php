@@ -83,7 +83,7 @@
                             </div>
                         </div>
                         <div class="addRecurso w-100 p-0 m-0">
-                                <button class="addNewRecurso" onclick="recursoNuevo()"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Añadir Recurso</button>
+                                <button class="addNewRecurso" data-toggle="modal" data-target="#nuevoRecurso"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Añadir Recurso</button>
                         </div>
                     </div>
                 </div>
@@ -112,7 +112,7 @@
                                 <div class="col-2"></div>
                                 <h5 class="titulo-tarea col-4">Tarea 1 </h5>
                                 <div class="col-2 h-100"><button class="botones-modulos w-75 h-100"><a class="archivo_descargable" href="./images/Vsts.png" download="Imagen 1"><i class="fa fa-download" aria-hidden="true"></i></a></button></div>
-                                <div class="col-2 h-100"><button class="botones-modulos w-75 h-100" onclick="agregarTarea()">ENTREGAR</button></div>
+                                <div class="col-2 h-100"><button type="button" class="botones-modulos w-75 h-100" data-toggle="modal" data-target="#entregarTarea">ENTREGAR</button></div>
                                 <div class="col-2 h-100"><button class="boton-descripcion w-75 h-100 btn btn-link collapsed" data-toggle="collapse" data-target="#descripcion-tarea" aria-expanded="false" aria-controls="descripcion-tarea">
                                 <i class="fa fa-angle-down" aria-hidden="true"></i>
                                 </button></div>
@@ -127,7 +127,7 @@
                                 <div class="col-2"></div>
                                 <h5 class="titulo-tarea  col-4">Tarea 1 </h5>
                                 <div class="col-2 h-100"><button class="botones-modulos w-75 h-100"><a class="archivo_descargable" href="./images/Vsts.png" download="Imagen 1"><i class="fa fa-download" aria-hidden="true"></i></a></button></div>
-                                <div class="col-2 h-100"><button class="botones-modulos w-75 h-100" onclick="agregarTarea()">ENTREGAR</button></div>
+                                <div class="col-2 h-100"><button type="button" class="botones-modulos w-75 h-100" data-toggle="modal" data-target="#entregarTarea">ENTREGAR</button></div>
                                 <div class="col-2 h-100"><button class="boton-descripcion w-75 h-100 btn btn-link collapsed" data-toggle="collapse" data-target="#descripcion-tarea-2" aria-expanded="false" aria-controls="descripcion-tarea-2">
                                 <i class="fa fa-angle-down" aria-hidden="true"></i>
                                 </button></div>
@@ -142,7 +142,7 @@
                                 <div class="col-2"></div>
                                 <h5 class="titulo-tarea col-4">Tarea 1 </h5>
                                 <div class="col-2 h-100"><button class="botones-modulos w-75 h-100"><a class="archivo_descargable" href="./images/Vsts.png" download="Imagen 1"><i class="fa fa-download" aria-hidden="true"></i></a></button></div>
-                                <div class="col-2 h-100"><button class="botones-modulos w-75 h-100" onclick="agregarTarea()">ENTREGAR</button></div>
+                                <div class="col-2 h-100"><button type="button" class="botones-modulos w-75 h-100" data-toggle="modal" data-target="#entregarTarea">ENTREGAR</button></div>
                                 <div class="col-2 h-100"><button class="boton-descripcion w-75 h-100 btn btn-link collapsed" data-toggle="collapse" data-target="#descripcion-tarea-3" aria-expanded="false" aria-controls="descripcion-tarea-3">
                                 <i class="fa fa-angle-down" aria-hidden="true"></i>
                                 </button></div>
@@ -153,12 +153,103 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="addTareas w-100 p-0 m-0">
+                                <button class="addNewTareas" data-toggle="modal" data-target="#nuevaTarea"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Añadir Tarea</button>
+                        </div>
+
                     </div>
                 </div>
             </div>
         </div>
-        <button class="pruebas" onclick="prueba()">¡¡Probar!!</button>
+        <div class="modal fade w-100 h-100" id="entregarTarea">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+
+                    <div class="modal-header d-flex flex-row align-items-center">
+                        <h4 class="modal-title">Entregar Tarea</h4>
+                    </div>
+
+                    <div class="modal-body">
+                        <form action="" class="p-1 m-0 d-flex flex-column justify-content-center rounded border border-dark bg-light w-100 h-100">
+                            <label for="" class="ml-3 pb-2">Selecciona el archivo que quieres subir:&nbsp;</label>
+                            <input class="ml-3 pb-2" type="file" name="archivo-nuevo" id="archivo-nuevo" multiple onchange="mostrarValor()"/>
+                            <label class="ml-3 pb-2" for="">O también puedes soltar aquí tu archivo <i class="fa fa-arrow-down" aria-hidden="true"></i></label>
+                            <div class="border border-dark mb-2 d-flex flex-row align-items-center justify-content-center h-50 ml-3 mr-3" id="drop-zone" ondrop="dropHandler(event);" ondragover="dragOverHandler(event);" ondragleave="dragLeave(event)"><p id="mensaje">Arrastra aquí tus archivos</p></div>
+                        </form>
+                    </div>
+
+                    <div class="modal-footer d-flex flex-row align-content-center">
+                        <button type="button" class="btn btn-success" data-dismiss="modal">Añadir</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        
+        <div class="modal fade w-100 h-100" id="nuevaTarea">
+            <div class="modal-dialog modal-dialog-centered modal-xl">
+                <div class="modal-content">
+
+                    <div class="modal-header d-flex flex-row align-items-center">
+                        <h4 class="modal-title">Añadir Nueva Tarea</h4>
+                    </div>
+
+                    <div class="modal-body">
+                    <form action="" class="p-1 m-0 d-flex flex-column justify-content-center rounded border border-dark bg-light w-100 h-100">
+                            <div class="d-flex flex-row justify-content-between align-items-center">
+                                <label for="" class="col-4 h-100 d-flex flex-column justify-content-center">Nombre de la nueva tarea:</label>
+                                <input class="col-8 w-100 h-75" type="text" name="nombre-tarea" id="nombre-tarea"/>
+                            </div>
+                            <div class="d-flex flex-row justify-content-between align-items-center">
+                                <label for="" class="col-4 h-100 d-flex flex-column justify-content-center">Fecha Límite de Entrega:</label>
+                                <input class="col-8 w-100 h-75" type="date" name="fecha-limite" id="fecha-limite"/>
+                            </div>
+                            <label for="" class="pl-3">Descripción de la Tarea (opcional): &nbsp; </label>
+                            <textarea name="" id="" cols="30" class="ml-3 h-25"></textarea>
+                            <label for="" class="pl-3">Recurso: &nbsp; <i class="fa fa-arrow-down" aria-hidden="true"></i></label>
+                            <div class="border border-dark bg-white mb-2 d-flex flex-row align-items-center justify-content-center h-25 ml-3" id="drop-zone" ondrop="dropHandler(event);" ondragover="dragOverHandler(event);" ondragleave="dragLeave(event)"><p id="mensaje">Arrastra aquí tus archivos</p></div>
+                        </form>
+                    </div>
+
+                    <div class="modal-footer d-flex flex-row align-content-center">
+                        <button type="button" class="btn btn-success" data-dismiss="modal">Añadir</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade w-100 h-100" id="nuevoRecurso">
+            <div class="modal-dialog modal-dialog-centered modal-xl">
+                <div class="modal-content h-75">
+
+                    <div class="modal-header d-flex flex-row align-items-center">
+                        <h4 class="modal-title">Añadir Nuevo Recurso</h4>
+                    </div>
+
+                    <div class="modal-body">
+                        <form action="" class="p-1 m-0 d-flex flex-column justify-content-center rounded border border-dark bg-light w-100 h-100">
+                            <div class="d-flex flex-row justify-content-between align-items-center">
+                                <label for="" class="p-2 col-4 h-100 d-flex flex-column justify-content-center">Nombre del nuevo recurso:</label>
+                                <input class="p-2 col-8 w-100 h-75" type="text" name="nombre-recurso" id="nombre-recurso"/>
+                            </div>
+                            <label for="" class="p-2">Descripción del Recurso (opcional): &nbsp; </label>
+                            <textarea name="" id="" cols="30" class="h-25 ml-2"></textarea>
+                            <label class="p-2" for="">Recurso: &nbsp; <i class="fa fa-arrow-down" aria-hidden="true"></i></label>
+                            <div class="border border-dark ml-2 mb-2 d-flex flex-row align-items-center justify-content-center h-25" id="drop-zone" ondrop="dropHandler(event);" ondragover="dragOverHandler(event);" ondragleave="dragLeave(event)"><p id="mensaje">Arrastra aquí tus archivos</p></div>
+                        </form>
+                    </div>
+
+                    <div class="modal-footer d-flex flex-row align-content-center">
+                        <button type="button" class="btn btn-success" data-dismiss="modal">Añadir</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
         <?php include "./footer.php" ?>
     </div>
-
-    

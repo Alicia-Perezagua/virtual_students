@@ -57,6 +57,10 @@
     color: lightseagreen;
 }
 
-.addRecurso{
-   display: none; 
+.modal-header, .modal-footer{
+    height: 55px;
+}
+
+.modal-body{
+    height: 400px;
 }

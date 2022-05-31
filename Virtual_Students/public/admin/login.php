@@ -7,7 +7,7 @@
         </ul>
     </div>
     <div class="contenedor-formulario container-fluid p-0 m-0 d-flex flex-row justify-content-center align-items-center w-100 h-0">
-        <form action="" class="h-50 d-flex flex-column justify-content-center align-items-center">
+        <form action="" class="formulario-login h-50 d-flex flex-column justify-content-center align-items-center">
             <label class="login-label" for="">Username: </label>
             <input class="login-input" type="text" id="username">
             <button class="button-entrar">Siguiente</button>
