@@ -28,5 +28,4 @@ if(sesion_usuario()==null){
     in_error("ya tienes sesion iniciada");
         header("Location:../public/admin/login.php");
 }
-
 ?>
