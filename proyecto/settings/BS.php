@@ -4,6 +4,4 @@ function hash_change($password){
     $password_hash= password_hash($password,PASSWORD_DEFAULT);
     return $password_hash;
 }
-
-echo hash_change(1234);
 ?>
