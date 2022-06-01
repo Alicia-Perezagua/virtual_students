@@ -50,8 +50,10 @@ global $bd;
 function cargarProfesores(){
     global $bd, $profesores_arr;
 
+    $parametro = "Profesor";
+
     $profesores = $bd -> prepare("call recogerUsuariosByRol(?)");
-    $profesores -> bindParam(1, "Profesor", PDO::PARAM_STR, 255);
+    $profesores -> bindParam(1, $parametro, PDO::PARAM_STR, 255);
     $profesores -> execute();
 
     while($datosProf = $profesores -> fetch()){
@@ -61,7 +63,7 @@ function cargarProfesores(){
             "nombre" => $datosProf["nombre_usuario"]
         ];
 
-        $profesores_arr.array_push($datos);
+        array_push($profesores_arr, array($datos));
 
     }
 

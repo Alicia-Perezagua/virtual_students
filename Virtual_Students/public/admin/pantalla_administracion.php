@@ -8,7 +8,7 @@
 </div>
 <div class="funcionalidades container d-flex flex-column align-items-center justify-content-around pb-2">
     <button class="botones-admin w-50" data-toggle="modal" data-target="#alta-usuarios">Alta Usuarios</button>
-    <button class="botones-admin w-50" data-toggle="modal" data-target="#alta-profesores">Alta Profesores</button>
+    <button class="botones-admin w-50" data-toggle="modal" data-target="#alta-profesores" onclick="cargarProfesores()">Alta Profesores</button>
     <button class="botones-admin w-50" data-toggle="modal" data-target="#alta-usuarios">Matriculación Alumnos</button>
     <button class="botones-admin w-50" data-toggle="modal" data-target="#alta-usuarios">Alta Centros</button>
     <button class="botones-admin w-50" data-toggle="modal" data-target="#alta-usuarios">Alta Ciclos</button>
@@ -34,22 +34,23 @@
                         <div class="d-flex flex-row justify-content-around"><label for="" class="col-5">Primer Apellido: &nbsp;</label><input type="text" name="" id="lastname1" class="datos-user col-7"></div>
                         <div class="d-flex flex-row justify-content-around"><label for="" class="col-5">Segundo Apellido: &nbsp;</label><input type="text" name="" id="lastname2" class="datos-user col-7"></div>
                         <div class="d-flex flex-row justify-content-around"><label for="" class="col-5">Fecha de Nacimiento: &nbsp;</label><input type="date" name="" id="birthday" class="datos-user col-7"></div>
-                        <div class="d-flex flex-row justify-content-around"><label for="" class="col-5">DNI: &nbsp;</label><input type="text" name="" id="dni" class="datos-user col-7"></div>
+                        <div class="d-flex flex-row justify-content-around"><label for="" class="col-5">DNI: &nbsp;</label><input type="text" name="" id="dni" class="datos-user col-7" onchange="comprobarDNI()"></div>
                         <div class="d-flex flex-row justify-content-around"><label for="" class="col-5">Dirección: &nbsp;</label><input type="text" name="" id="dir" class="datos-user col-7"></div>
                     </div>
                     <div class="bloque2 d-flex flex-column justify-content-around h-100 col-6">        
-                        <div class="d-flex flex-row justify-content-around"><label for="" class="col-5">Código Postal: &nbsp;</label><input type="text" name="" id="postCode" class="datos-user col-7" minlength="5" maxlength="5"></div>
+                        <div class="d-flex flex-row justify-content-around"><label for="" class="col-5">Código Postal: &nbsp;</label><input type="text" name="" id="postCode" class="datos-user col-7" onchange="comprobarCodPos()"></div>
                         <div class="d-flex flex-row justify-content-around"><label for="" class="col-5">Localidad: &nbsp;</label><input type="text" name="" id="local" class="datos-user col-7"></div>
                         <div class="d-flex flex-row justify-content-around"><label for="" class="col-5">Comunidad Autónoma: &nbsp;</label><input type="text" name="" id="comAuto" class="datos-user col-7"></div>
                         <div class="d-flex flex-row justify-content-around"><label for="" class="col-5">Nacionalidad: &nbsp;</label><input type="text" name="" id="nacio" class="datos-user col-7"></div>
                         <div class="d-flex flex-row justify-content-around"><label for="" class="col-5">Email: &nbsp;</label><input type="text" name="" id="mail" class="datos-user col-7" onchange="comprobarEmail()"></div>
-                        <div class="d-flex flex-row justify-content-around"><label for="" class="col-5">Teléfono Móvil: &nbsp;</label><input type="text" name="" id="mobile" class="datos-user col-7"></div>
-                        <div class="d-flex flex-row justify-content-around"><label for="" class="col-5">Teléfono Fijo:</label><input type="text" name="" id="phone" class="datos-user col-7"></div>
+                        <div class="d-flex flex-row justify-content-around"><label for="" class="col-5">Teléfono Móvil: &nbsp;</label><input type="text" name="" id="mobile" class="datos-user col-7" onchange="comprobarMovil()"></div>
+                        <div class="d-flex flex-row justify-content-around"><label for="" class="col-5">Teléfono Fijo:</label><input type="text" name="" id="phone" class="datos-user col-7" onchange="comprobarFijo()"></div>
                         <div class="d-flex flex-row justify-content-around"><label for="" class="col-5">Rol: &nbsp;</label>
                         <select name="" id="role" class="datos-user col-7">
-                            <option value="">Estudiante</option>
-                            <option value="">Profesor</option>
-                            <option value="">Admin</option>
+                            <option value="">No Asignado</option>
+                            <option value="Alumno">Alumno</option>
+                            <option value="Profesor">Profesor</option>
+                            <option value="Admin">Admin</option>
                         </select></div>
                     </div>
                 </form>
@@ -57,7 +58,7 @@
 
             <div class="modal-footer d-flex flex-row align-content-center">
                 <button type="button" class="btn btn-success" data-dismiss="modal" onclick="addUser()">Añadir</button>
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="onCloseModalUsers()">Close</button>
             </div>
 
         </div>
@@ -74,7 +75,7 @@
 
             <div class="addTeacher modal-body">
                 <form action="" class="d-flex flex-column justify-content-center align-items-around h-100">
-                    <div class="d-flex flex-row justify-content-around"><label for="" class="col-3">Seleccione un Usuario: &nbsp;</label><select class="col-9" name="" id=""></select></div>
+                    <div class="d-flex flex-row justify-content-around"><label for="" class="col-3">Seleccione un Usuario: &nbsp;</label><select class="col-9" name="" id="idUsuario"></select></div>
                     <div class="d-flex flex-row justify-content-around"><label for="" class="col-3">NRP: &nbsp;</label><input class="col-9" type="text" name="" id=""></div>
                     <div class="d-flex flex-row justify-content-around"><label for="" class="col-3">Salario (opcional): &nbsp;</label><input class="col-9" type="text" name="" id=""></div>
                     <div class="d-flex flex-row justify-content-around"><label for="" class="col-3">Email Docente: &nbsp;</label><input class="col-9" type="text" name="" id=""></div>

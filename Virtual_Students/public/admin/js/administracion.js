@@ -55,8 +55,66 @@ function addUser(){
         success: function(data){
             if(data){
                 alert(data);
+                $("#user").val("");
+                $("#name").val("");
+                $("#lastname1").val("");
+                $("#lastname2").val("");
+                $("#birthday").val("");
+                $("#dni").val("");
+                $("#dni").css("border", "1px solid black");
+                $("#dni").css("background-color", "white");
+                $("#dir").val("");
+                $("#postCode").val("");
+                $("#postCode").css("border", "1px solid black");
+                $("#postCode").css("background-color", "white");
+                $("#local").val("");
+                $("#comAuto").val("");
+                $("#nacio").val("");
+                $("#mail").val("");
+                $("#mail").css("border", "1px solid black");
+                $("#mail").css("background-color", "white");
+                $("#mobile").val("");
+                $("#mobile").css("border", "1px solid black");
+                $("#mobile").css("background-color", "white");
+                $("#phone").val("");
+                $("#phone").css("border", "1px solid black");
+                $("#phone").css("background-color", "white");
+                $("#role").val("");
             } else {
                 alert("No se ha podido insertar el usuario");
+            }
+        }
+    });
+}
+
+function cargarProfesores(){
+    var peticion = $.ajax({
+        url: "./admin_back.php", 
+        type: "POST", 
+        dataType: "json", 
+        async: true,
+        
+        data: {
+            funcion: "cargar profesores"
+        },
+
+        success: function(data){
+            if(data){
+                let idUsuarioBack;
+                let nombre_user;
+                // console.log(data);
+                // console.log(data[0]);
+                // console.log(data[0].length);
+                for(var i = 0; i < data.length; i++){
+                    for(var j = 0; j < data.length; i++){
+                        idUsuarioBack = data[i][j].id_user;
+                        console.log(idUsuarioBack)
+                        nombre_user = data[i][j].nombre;
+                        console.log(nombre_user);
+                        let options = "<option value='" + idUsuarioBack +"'>" + nombre_user + "</option>";
+                        $("#idUsuario").append(options);
+                    }                  
+                }
             }
         }
     });
@@ -69,5 +127,91 @@ function comprobarEmail(){
         $("#mail").css("border", "1px solid red");
         $("#mail").css("background-color", "pink"); 
         $("#mail").val("");
+    } else {
+        $("#mail").css("border", "1px solid black");
+        $("#mail").css("background-color", "white");
     }
+}
+
+function comprobarDNI(){
+    let dni = $("#dni").val();
+
+    if(!patronDNI1.test(dni) && !patronDNI2.test(dni) && !patronDNI3.test(dni)){
+        $("#dni").css("border", "1px solid red");
+        $("#dni").css("background-color", "pink"); 
+        $("#dni").val("");
+    } else {
+        $("#dni").css("border", "1px solid black");
+        $("#dni").css("background-color", "white");
+    }
+}
+
+function comprobarMovil(){
+    let movil = $("#mobile").val();
+
+    if(!patronTelefono1.test(movil) && !patronMovil.test(movil)){
+        $("#mobile").css("border", "1px solid red");
+        $("#mobile").css("background-color", "pink"); 
+        $("#mobile").val("");
+    } else {
+        $("#mobile").css("border", "1px solid black");
+        $("#mobile").css("background-color", "white");
+    }
+}
+
+function comprobarFijo(){
+    let fijo = $("#phone").val();
+
+    if(!patronTelefono1.test(fijo) && !patronFijo.test(fijo)){
+        $("#phone").css("border", "1px solid red");
+        $("#phone").css("background-color", "pink"); 
+        $("#phone").val("");
+    } else if($("#phone").val() === ""){
+        $("#phone").css("border", "1px solid black");
+        $("#phone").css("background-color", "white");
+    } else {
+        $("#phone").css("border", "1px solid black");
+        $("#phone").css("background-color", "white");
+    }
+}
+
+function comprobarCodPos(){
+    let postCode = $("#postCode").val();
+
+    if(!patronCodigoPostal.test(postCode)){
+        $("#postCode").css("border", "1px solid red");
+        $("#postCode").css("background-color", "pink"); 
+        $("#postCode").val("");
+    } else {
+        $("#postCode").css("border", "1px solid black");
+        $("#postCode").css("background-color", "white");
+}
+}
+
+function onCloseModalUsers(){
+    $("#user").val("");
+    $("#name").val("");
+    $("#lastname1").val("");
+    $("#lastname2").val("");
+    $("#birthday").val("");
+    $("#dni").val("");
+    $("#dni").css("border", "1px solid black");
+    $("#dni").css("background-color", "white");
+    $("#dir").val("");
+    $("#postCode").val("");
+    $("#postCode").css("border", "1px solid black");
+    $("#postCode").css("background-color", "white");
+    $("#local").val("");
+    $("#comAuto").val("");
+    $("#nacio").val("");
+    $("#mail").val("");
+    $("#mail").css("border", "1px solid black");
+    $("#mail").css("background-color", "white");
+    $("#mobile").val("");
+    $("#mobile").css("border", "1px solid black");
+    $("#mobile").css("background-color", "white");
+    $("#phone").val("");
+    $("#phone").css("border", "1px solid black");
+    $("#phone").css("background-color", "white");
+    $("#role").val("");
 }
