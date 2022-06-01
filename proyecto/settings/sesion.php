@@ -1,8 +1,6 @@
 <?php
 $ajax=null;
     // usuario
-
-    $funcion = 
     session_start();
     function abrir_sesion($id,$rol)
     {
@@ -23,7 +21,6 @@ $ajax=null;
         }
         return $fin ;
     }
-
     function out_usuario_id(){
         return $_SESSION['id'];
     }
