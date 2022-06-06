@@ -7,6 +7,7 @@ $ajax=null;
         $_SESSION['id']=$id;
         $_SESSION['rol']=$rol;
     }
+    //log out
     function cerrar_sesion()
     {
         $_SESSION=Array();
@@ -20,6 +21,9 @@ $ajax=null;
             $fin=null;
         }
         return $fin ;
+    }
+    function get_rol(){
+        return $_SESSION['rol']
     }
     function out_usuario_id(){
         return $_SESSION['id'];
@@ -50,7 +54,7 @@ $ajax=null;
             echo out_usuario_rol();
             break;
         case "recogerId":
-            echo out_usuario_rol();
+            echo out_usuario_id();
             break;
         case "recogerError":
             echo out_error();
