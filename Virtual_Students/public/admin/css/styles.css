@@ -91,3 +91,22 @@
     font-weight: bold;
     -webkit-text-stroke: 0.5px black;
 }
+#menu_alumnos_desktop{
+    display: flex;
+}
+
+#menu_alumnos_small{
+    display: none; 
+}
+
+@media (max-width: 750px){
+
+    #menu_alumnos_desktop{
+        display: none; 
+    }
+
+    #menu_alumnos_small{
+        display: flex;
+    } 
+
+}

@@ -16,3 +16,7 @@
 .addTeacher{
     height:300px;
 }
+
+.requerido{
+    font-weight: bold;
+}

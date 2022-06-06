@@ -60,8 +60,10 @@ function cargarProfesores(){
 
         $datos = [
             "id_user" => $datosProf["id_user"],
-            "nombre" => $datosProf["nombre_usuario"]
-        ];
+            "nombre" => $datosProf["nombre_usuario"], 
+            "primer_apellido" => $datosProf['primer_apellido'],
+            "segundo_apellido" => $datosProf['segundo_apellido']
+        ]; 
 
         array_push($profesores_arr, array($datos));
 
@@ -72,10 +74,32 @@ function cargarProfesores(){
 
 };
 
+function altaProfesores(){
+    global $bd;
+
+    
+    $nrp = $_POST['nrp'];
+    $salario = $_POST['salary'];
+    $emailDocente = $_POST['email'];
+    $id_user = $_POST['id_user'];
+
+    $datos = $bd -> prepare("call altaProfesores(?, ?, ?, ?)");
+    $datos -> bindParam(1, $nrp, PDO::PARAM_INT);
+    $datos -> bindParam(2, $salario, PDO::PARAM_INT);
+    $datos -> bindParam(3, $emailDocente, PDO::PARAM_STR, 255);
+    $datos -> bindParam(4, $id_user, PDO::PARAM_INT);
+
+    $datos -> execute();
+
+    return "Profesor dado de alta";
+}
+
 switch($funcion){
     case "cargar profesores": echo json_encode(cargarProfesores()); 
     break;
     case "añadir usuario": echo addUsuario();
+    break;
+    case "alta profesor": echo altaProfesores();
     break; 
 }
 
