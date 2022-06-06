@@ -1,0 +1,13 @@
+@font-face {
+    font-family: 'DayPosterBlack';
+    src: url('DayPosterBlack.eot');
+    src: url('DayPosterBlack.eot?#iefix') format('embedded-opentype'),
+        url('DayPosterBlack.woff2') format('woff2'),
+        url('DayPosterBlack.woff') format('woff'),
+        url('DayPosterBlack.ttf') format('truetype'),
+        url('DayPosterBlack.svg#DayPosterBlack') format('svg');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+

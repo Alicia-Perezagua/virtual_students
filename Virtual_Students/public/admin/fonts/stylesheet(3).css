@@ -1,0 +1,13 @@
+@font-face {
+    font-family: 'Honey Notes';
+    src: url('HoneyNotes-Regular.eot');
+    src: url('HoneyNotes-Regular.eot?#iefix') format('embedded-opentype'),
+        url('HoneyNotes-Regular.woff2') format('woff2'),
+        url('HoneyNotes-Regular.woff') format('woff'),
+        url('HoneyNotes-Regular.ttf') format('truetype'),
+        url('HoneyNotes-Regular.svg#HoneyNotes-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+

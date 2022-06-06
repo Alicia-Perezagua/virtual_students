@@ -1,0 +1,48 @@
+.body_modulo{
+    width: 100%;
+    height: 100vh;
+    background-image: url(../images/kimberly-farmer-lUaaKCUANVI-unsplash.jpg);
+    background-size: cover;
+    background-position: top left; 
+}
+
+.tranparencia-modulo{
+    width: 100%; 
+    height: 100vh;
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.breadcrumbs_menu{
+    background-color: transparent; 
+}
+
+.breadcrumbs_menu > ol{
+    background-color: transparent; 
+}
+
+.botones-modulos{
+    width: 75px;
+    padding: 0;
+}
+.boton-descripcion{
+    color: black;
+    font-size: 40px;
+    padding: 0;
+}
+.cabeceras, .titulo-tarea, .titulo-recurso{
+    font-size: 20px;
+    font-family: 'Patrick Hand', cursive;
+}
+
+.descripcion{
+    width: 64%;
+}
+
+.archivo_descargable{
+    color: white;
+    transition: 0.3s;
+}
+
+.archivo_descargable:hover{
+    color: lightseagreen;
+} 

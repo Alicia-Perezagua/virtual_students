@@ -1,0 +1,11 @@
+.modulos{
+    
+    padding-top: 60px;
+    margin: auto;
+    display: flex; 
+    flex-direction: column; 
+}
+
+.filaModulo{
+    height: 55px;
+}
