@@ -10,7 +10,7 @@
             $datos -> execute();
             $datos_array=[];
             while($dato = $datos->fetch()){
-                $dato = [
+                $datoAr = [
                     'id_usuario'=>$dato['id_usuario'],
                     'username'=>$dato['username'],
                     '_password'=>$dato['_password'],
@@ -30,7 +30,7 @@
                     'categoria'=>$dato['categoria']
                 ];
         
-                $datos_array.array_push($datos);
+                $datos_array.array_push($datoAr);
             }
             $datos_array.array_push($datos);
             null_error();

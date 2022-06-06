@@ -10,12 +10,12 @@
         $modulos -> execute();
         $modulos_array=[];
         while($modulo = $modulos->fetch()){
-            $modulo = [
+            $moduloAr = [
                 "id_modulo" => $modulo["id_modulo"],
                 "nombre" => $modulo["nombre_modulo"]
             ];
     
-            $modulos_array.array_push($modulo);
+            $modulos_array.array_push($moduloAr);
         }
         null_error();
         return $modulos_array;
