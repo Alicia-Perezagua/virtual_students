@@ -15,7 +15,7 @@
                 "nombre" => $modulo["nombre_modulo"]
             ];
     
-            $modulos_array.array_push($datos);
+            $modulos_array.array_push($modulo);
         }
         null_error();
         return $modulos_array;
@@ -34,7 +34,7 @@
                 "nombre" => $tarea["nombre_modulo"]
             ];
     
-            $tarea_array.array_push($datos);
+            $tarea_array.array_push($modulo);
         }
         null_error();
         return $tarea_array;
