@@ -20,3 +20,12 @@
 .requerido{
     font-weight: bold;
 }
+
+legend{
+    width: 40%;
+    font-size: 20px;
+}
+
+.asignaciones{
+    height: 450px;
+}

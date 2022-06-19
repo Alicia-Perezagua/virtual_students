@@ -117,12 +117,7 @@ function cargarMenus(){
                                "</div>" +
                             "</ul>" +
                         "</div>");
-                        } else if(data === "Admin"){
-                            setTimeout(function() {
-                                window.location.href = "../admin/pantalla_administracion.php";
-                            }, 1500);
-                        
-                        }
+                        } 
                     }
                 });
             }

@@ -2,15 +2,17 @@
     try
     {
         //introducción objeto sesión
-        include "sesion.php";
-        if(sesion_usuario()==null)
-        {
-            in_error("Ya estas con una cuenta conectado, por favor cierre antes de iniciar o crear otra");
-        }else if (get_rol()=='profesor'||get_rol()=='administrador')
-        {
+        // include "sesion.php";
+        // if(sesion_usuario()==null)
+        // {
+        //     in_error("Ya estas con una cuenta conectado, por favor cierre antes de iniciar o crear otra");
+        // }else if (get_rol()=='profesor'||get_rol()=='administrador')
+        // {
                 $funcion = $_POST['funcion'];
                 // acceso a la base de datos ($bd)
                 include 'ConexionDB.php';
+
+                $bd = new ConexionDB;
                 // función para añadir usuarios
                 /**
                          * introducir los datos del usuario para su registro
@@ -20,6 +22,7 @@
                          */
                     function addUsuario(){
                         global $bd;
+
                             $username = $_POST['username'];
                             $nombre = $_POST['nombre']; 
                             $apellido1 = $_POST['apellido1'];
@@ -37,9 +40,7 @@
                             $rol = $_POST['rol'];
 
                             $sql = "INSERT INTO usuarios VALUES(null, " . $username . "," . $nombre . "," . $apellido1 . "," . $apellido2 . "," . $fechNac . "," . $dni . "," . $address . "," . $postCode . "," . $localidad . "," . $comunidad_autonoma . "," . $nacionalidad . "," . $email . "," . $movil . "," . $fijo . "," . $rol . ")";
-                            $res =  
-                            
-                            $insertarUsuario -> execute();
+                            $res =  $bd -> search($sql);
                             null_error();
                             return "Usuario insertado con éxito";
                         };
@@ -77,10 +78,11 @@
                             case "añadirUsuario": echo addUsuario();
                             break; 
                         }
-        }else
-        {
-            in_error( "solo puede si es profesor o administrador del sitio ");
-        }
+                    
+        // }else
+        // {
+        //     in_error( "solo puede si es profesor o administrador del sitio ");
+        // }
     }catch(PDOException $e)
     {
         in_error( "el usuario ".$user_name." ya esta siendo usado, por favor use otro nombre");

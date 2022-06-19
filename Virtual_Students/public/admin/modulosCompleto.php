@@ -8,7 +8,7 @@
     </ul>
 </div>
 
-<div class="modulos container w-75">
+<div class="modulos container w-75" id="pantalla_modulos_C">
     <div class="filaModulo p-0 m-0 w-100 d-flex flex-row align-items-center border border-dark">
         <h5 class="col-11">Bases de Datos</h5>
         <button class="w-100 h-100"><i class="fa fa-angle-right" aria-hidden="true"></i></button>

@@ -61,7 +61,7 @@ function setearClaveNueva(){
     let repPass = $("#repPass").val();
     let cookie = document.cookie
     let cookieArr = cookie.split(";");
-    let cookieUserArr = cookieArr[1].split("="); 
+    let cookieUserArr = cookieArr[0].split("="); 
     let cookieUsername = cookieUserArr[1];
     
     let user_name = cookieUsername;
@@ -82,9 +82,27 @@ function setearClaveNueva(){
                 if(data === "true"){
                     $("#mensajes").css("display", "inline"); 
                     $("#mensajes").text("Sesión iniciada con éxito");
-                    setTimeout(function() {
-                        window.location.href = "../admin/index.php";
-                    }, 1500);
+                    var peticion3 = $.ajax({
+                        url: "../../settings/sesion.php",
+                        type: "POST", 
+                        async: true, 
+                        data: {
+                            funcion: "recogerRol"
+                        },
+
+                        success: function(data){
+                            console.log(data);
+                            if(data === "Alumno" || data === "Profesor"){
+                                setTimeout(function() {
+                                    window.location.href = "../admin/index.php";
+                                }, 1500);
+                            } else if(data === "Admin"){
+                                setTimeout(function() {
+                                    window.location.href = "../admin/pantalla_administración.php";
+                                }, 1500);
+                            }
+                        }
+                    });
                 }
             }
         }); 
@@ -121,9 +139,27 @@ function iniciarSesion(){
             if(data === "true"){
                 $("#mensajes").css("display", "inline"); 
                 $("#mensajes").text("Sesión iniciada con éxito");
-                setTimeout(function() {
-                    window.location.href = "../admin/index.php";
-                }, 1500);
+                var peticion3 = $.ajax({
+                    url: "../../settings/sesion.php",
+                    type: "POST", 
+                    async: true, 
+                    data: {
+                        funcion: "recogerRol"
+                    },
+
+                    success: function(data){
+                        console.log(data);
+                        if(data === "Alumno" || data === "Profesor"){
+                            setTimeout(function() {
+                                window.location.href = "../admin/index.php";
+                            }, 1500);
+                        } else if(data === "Admin"){
+                            setTimeout(function() {
+                                window.location.href = "../admin/pantalla_administracion.php";
+                            }, 1500);
+                        }
+                    }
+                });
             }
         }
     })
@@ -135,7 +171,7 @@ function setearCookieSesion(){
     })
 }
 
-function comrpobarDatos(){
+function comprobarDatos(){
     let username = $("#username").val();
     console.log(username);
 }

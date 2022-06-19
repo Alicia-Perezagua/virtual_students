@@ -35,7 +35,7 @@ function addUser(){
     } else {
 
         var peticion = $.ajax({
-            url: "./admin_back.php",
+            url: "../../settings/admin.php",
             type: "POST",
             async: true,
             data: {
@@ -54,7 +54,7 @@ function addUser(){
                 movil: movil, 
                 fijo: fijo, 
                 rol: rol, 
-                funcion: "añadir usuario" 
+                funcion: "altaUsuario" 
             }, 
 
             success: function(data){
@@ -95,13 +95,13 @@ function addUser(){
 
 function cargarProfesores(){
     var peticion = $.ajax({
-        url: "./admin_back.php", 
+        url: "../../settings/admin.php", 
         type: "POST", 
         dataType: "json", 
         async: true,
         
         data: {
-            funcion: "cargar profesores"
+            funcion: "cargarProfesores"
         },
 
         success: function(data){
@@ -118,6 +118,157 @@ function cargarProfesores(){
                         segundo_apellido = data[i][j].segundo_apellido;
                         let options = "<option value='" + idUsuarioBack +"'>" + nombre_user + " " + primer_apellido + " " + segundo_apellido + "</option>";
                         $("#idUsuario").append(options);
+                        $("#profesores").append(options);
+                    }                  
+                }
+            }
+        }
+    });
+}
+
+function cargarAlumnos(){
+    var peticion = $.ajax({
+        url: "../../settings/admin.php", 
+        type: "POST", 
+        dataType: "json", 
+        async: true,
+        
+        data: {
+            funcion: "cargarAlumnos"
+        },
+
+        success: function(data){
+            if(data){
+                let idUsuarioBack;
+                let nombre_user;
+                let primer_apellido;
+                let segundo_apellido;
+                for(var i = 0; i < data.length; i++){
+                    for(var j = 0; j < data.length; i++){
+                        idUsuarioBack = data[i][j].id_user;
+                        nombre_user = data[i][j].nombre;
+                        primer_apellido = data[i][j].primer_apellido;
+                        segundo_apellido = data[i][j].segundo_apellido;
+                        let options = "<option value='" + idUsuarioBack +"'>" + nombre_user + " " + primer_apellido + " " + segundo_apellido + "</option>";
+                        $("#idUserAlumnos").append(options);
+                    }                  
+                }
+            }
+        }
+    });
+}
+
+function cargarCiclos(){
+    var peticion = $.ajax({
+        url: "../../settings/admin.php", 
+        type: "POST", 
+        dataType: "json", 
+        async: true,
+        
+        data: {
+            funcion: "cargarCiclos"
+        },
+
+        success: function(data){
+            if(data){
+                let idCiclo;
+                let nombre_ciclo;
+
+                for(var i = 0; i < data.length; i++){
+                    for(var j = 0; j < data.length; i++){
+                        idCiclo = data[i][j].id_ciclo;
+                        nombre_ciclo = data[i][j].nombre_ciclo;;
+                        let options = "<option value='" + idCiclo +"'>" + nombre_ciclo + "</option>";
+                        $("#ciclos").append(options);
+                        $("#ciclos2").append(options);
+                    }                  
+                }
+            }
+        }
+    });
+}
+
+function cargarModulos(){
+    var peticion = $.ajax({
+        url: "../../settings/admin.php", 
+        type: "POST", 
+        dataType: "json", 
+        async: true,
+        
+        data: {
+            funcion: "cargarModulos"
+        },
+
+        success: function(data){
+            if(data){
+                let idModulo;
+                let nombre_modulo;
+
+                for(var i = 0; i < data.length; i++){
+                    for(var j = 0; j < data.length; i++){
+                        idModulo = data[i][j].id_modulo;
+                        nombre_modulo = data[i][j].nombre_modulo;
+                        let options = "<option value='" + idModulo +"'>" + nombre_modulo + "</option>";
+                        $("#modulos").append(options);
+                        $("#modulos2").append(options);
+                    }                  
+                }
+            }
+        }
+    });
+}
+
+function cargarCentros(){
+    var peticion = $.ajax({
+        url: "../../settings/admin.php", 
+        type: "POST", 
+        dataType: "json", 
+        async: true,
+        
+        data: {
+            funcion: "cargarCentros"
+        },
+
+        success: function(data){
+            if(data){
+                let idCentro;
+                let nombre_centro;
+
+                for(var i = 0; i < data.length; i++){
+                    for(var j = 0; j < data.length; i++){
+                        idCentro = data[i][j].id_centro;
+                        nombre_centro = data[i][j].nombre_centro;
+                        let options = "<option value='" + idCentro +"'>" + nombre_centro + "</option>";
+                        $("#centros").append(options);
+                    }                  
+                }
+            }
+        }
+    });
+}
+
+function cargarGrupos(){
+    var peticion = $.ajax({
+        url: "../../settings/admin.php", 
+        type: "POST", 
+        dataType: "json", 
+        async: true,
+        
+        data: {
+            funcion: "cargarGrupos"
+        },
+
+        success: function(data){
+            if(data){
+                let idGrupo;
+                let denominacion;
+
+                for(var i = 0; i < data.length; i++){
+                    for(var j = 0; j < data.length; i++){
+                        idGrupo = data[i][j].id_grupo;
+                        denominacion = data[i][j].denominacion;
+                        let options = "<option value='" + idGrupo +"'>" + denominacion + "</option>";
+                        $("#grupos").append(options);
                     }                  
                 }
             }
@@ -136,7 +287,7 @@ function altaProfesores(){
         $('#toast-alta').toast('show');
     } else {
         var peticion = $.ajax({
-            url: "./admin_back.php",
+            url: "../../settings/admin.php",
             type: "POST", 
             async: true,
             data: {
@@ -144,7 +295,7 @@ function altaProfesores(){
                 nrp: nrp,
                 salary: salario,
                 email: emailDocente,
-                funcion: "alta profesor"
+                funcion: "altaProfesores"
             },
 
             success: function(data){
@@ -162,7 +313,206 @@ function altaProfesores(){
             }
         }); 
     }
+}
 
+function altaCentros(){
+    if($("#nombreCentro").val() === "" || $("#direccionCentro").val() === "" || $("#codPostCentro").val() === "" || $("#localidadCentro").val() === "" || $("#provinciaCentro").val() === "" || $("#comAutoCentro").val() === "" || $("#paisCentro").val() === ""){
+        $("#altaCentros-toast-text").text("Se deben rellenar todos los campos obligatorios");
+        $('#toast-alta-centros').toast('show');
+    } else {
+        var peticion1 = $.ajax({
+            url: "../../settings/admin.php",
+            type: "POST", 
+            async: true,
+            data: {
+                nombreC: $("#nombreCentro").val(),
+                direccionC: $("#direccionCentro").val(),
+                codPostC: $("#codPostCentro").val(),
+                localidadC: $("#localidadCentro").val(), 
+                provinciaC: $("#provinciaCentro").val(),
+                comAutoC: $("#comAutoCentro").val(), 
+                paisC: $("#paisCentro").val(), 
+                funcion: "altaCentros"
+            }, 
+    
+            success: function(data){
+                if(data){
+                    alert(data); 
+                } else {
+                    alert("No se pudo ingresar el centro educativo");
+                }
+            }
+        })
+
+        $("#nombreCentro").val("");
+        $("#direccionCentro").val("");
+        $("#codPostCentro").val("");
+        $("#localidadCentro").val("");
+        $("#provinciaCentro").val("");
+        $("#comAutoCentro").val("");
+        $("#paisCentro").val("");
+    }
+}
+
+function altaCiclos(){
+    if($("#nombreCiclo").val() === "" || $("#numCursos").val() === "" || $("#horasTotales").val() === "" || $("#famProf").val() === ""){
+        $("#altaCiclos-toast-text").text("Se deben rellenar todos los campos obligatorios");
+        $('#toast-alta-ciclos').toast('show');
+    } else {
+        var peticion1 = $.ajax({
+            url: "../../settings/admin.php",
+            type: "POST", 
+            async: true,
+            data: {
+                nombreCiclo: $("#nombreCiclo").val(),
+                descripcion: $("#descripcion").val(),
+                numCursos: $("#numCursos").val(),
+                horasTotales: $("#horasTotales").val(), 
+                famProf: $("#famProf").val(), 
+                funcion: "altaCiclos"
+            }, 
+    
+            success: function(data){
+                if(data){
+                    alert(data); 
+                } else {
+                    alert("No se pudo ingresar el ciclo formativo");
+                }
+            }
+        })
+
+        $("#nombreCiclo").val("");
+        $("#descripcion").val("");
+        $("#numCursos").val("");
+        $("#horasTotales").val("");
+        $("#famProf").val("");
+    }
+}
+
+function altaModulos(){
+    if($("#nombreModulo").val() === "" || $("#horasTotalesM").val() === "" || $("#horasSemanales").val() === "" || $("#curso").val() === ""){
+        $("#altaModulos-toast-text").text("Se deben rellenar todos los campos obligatorios");
+        $('#toast-alta-modulos').toast('show');
+    } else {
+        var peticion1 = $.ajax({
+            url: "../../settings/admin.php",
+            type: "POST", 
+            async: true,
+            data: {
+                nombreModulo: $("#nombreModulo").val(),
+                descripcionM: $("#descripcionM").val(),
+                horasTotalesM: $("#horasTotalesM").val(),
+                horasSemanales: $("#horasSemanales").val(), 
+                curso: $("#curso").val(), 
+                funcion: "altaModulos"
+            }, 
+    
+            success: function(data){
+                if(data){
+                    alert(data); 
+                } else {
+                    alert("No se pudo ingresar el ciclo formativo");
+                }
+            }
+        })
+
+        $("#nombreModulo").val("");
+        $("#descripcionM").val("");
+        $("#horasTotalesM").val("");
+        $("#horasSemanales").val("");
+        $("#curso").val("");
+    }
+}
+
+function altaGrupos(){
+    if($("#denominacion").val() === ""){
+        $("#altaGrupos-toast-text").text("Se deben rellenar todos los campos obligatorios");
+        $('#toast-alta-grupos').toast('show');
+    } else {
+        var peticion1 = $.ajax({
+            url: "../../settings/admin.php",
+            type: "POST", 
+            async: true,
+            data: {
+                denominacion: $("#denominacion").val(),
+                funcion: "altaGrupos"
+            }, 
+    
+            success: function(data){
+                if(data){
+                    alert(data); 
+                } else {
+                    alert("No se pudo ingresar el ciclo formativo");
+                }
+            }
+        })
+
+        $("#denominacion").val("");
+    }
+}
+
+function ciclosCentros(){
+    var peticion1 = $.ajax({
+        url: "../../settings/admin.php",
+        type: "POST", 
+        async: true,
+        data: {
+            idCentro: $("#centros").val(),
+            idCiclo: $("#ciclos").val(),
+            funcion: "ciclosCentros"
+        }, 
+
+        success: function(data){
+            if(data){
+                alert(data); 
+            } else {
+                alert("No se ha podido realizar la asignación");
+            }
+        }
+    });
+}
+
+function modulosCiclos(){
+    var peticion1 = $.ajax({
+        url: "../../settings/admin.php",
+        type: "POST", 
+        async: true,
+        data: {
+            idModulo: $("#modulos").val(),
+            idCiclo: $("#ciclos2").val(), 
+            funcion: "modulosCiclos"
+        }, 
+
+        success: function(data){
+            if(data){
+                alert(data); 
+            } else {
+                alert("No se ha podido realizar la asignación");
+            }
+        }
+    });
+}
+
+function modulosGruposProfesor(){
+    var peticion1 = $.ajax({
+        url: "../../settings/admin.php",
+        type: "POST", 
+        async: true,
+        data: {
+            idGrupo: $("#grupos").val(),
+            idModulo: $("#modulos2").val(),
+            idProfesor: $("#profesores").val(),
+            funcion: "modulosGruposProfesor"
+        }, 
+
+        success: function(data){
+            if(data){
+                alert(data); 
+            } else {
+                alert("No se ha podido realizar la asignación");
+            }
+        }
+    });
 }
 
 function comprobarEmail(inputId, inputValue){
@@ -233,18 +583,25 @@ function comprobarFijo(){
     }
 }
 
-function comprobarCodPos(){
-    let postCode = $("#postCode").val();
+function comprobarCodPos(inputId, inputValue){
+   
 
-    if(!patronCodigoPostal.test(postCode)){
-        $("#postCode").css("border", "1px solid red");
-        $("#postCode").css("background-color", "pink"); 
-        $("#postCode").val("");
+    if(!patronCodigoPostal.test(inputValue)){
+        $("#" + inputId).css("border", "1px solid red");
+        $("#" + inputId).css("background-color", "pink"); 
+        $("#" + inputId).val("");
+        if(inputId === "postCode"){
+            $("#toast-text").text("El campo 'código postal' no cumple el formato");
+            $('#element').toast('show');
+        } else if(inputId === "codPostCentro"){
+            $("#altaCentros-toast-text").text("El campo 'código postal' no cumple el formato");
+            $('#toast-alta-centros').toast('show');
+        }
         $("#toast-text").text("El campo 'Código Postal' no cumple el formato");
         $('#element').toast('show');
     } else {
-        $("#postCode").css("border", "1px solid black");
-        $("#postCode").css("background-color", "white");
+        $("#" + inputId).css("border", "1px solid black");
+        $("#" + inputId).css("background-color", "white");
 }
 }
 
@@ -284,6 +641,43 @@ function onCloseModalAlta(){
     $("#emailDocente").css("background-color", "white");
 }
 
+function onCloseModalAltaCentros(){
+    $("#nombreCentro").val("");
+    $("#direccionCentro").val("");
+    $("#codPostCentro").val("");
+    $("#localidadCentro").val("");
+    $("#provinciaCentro").val("");
+    $("#comAutoCentro").val("");
+    $("#paisCentro").val("");
+    $("#codPostCentro").css("border", "1px solid black");
+    $("#codPostCentro").css("background-color", "white");
+}
+
+function onCloseModalAltaCiclos(){
+        $("#nombreCiclo").val("");
+        $("#descripcion").val("");
+        $("#numCursos").val("");
+        $("#horasTotales").val("");
+        $("#famProf").val("");
+}
+
+function onCloseModalAltaModulos(){
+    $("#nombreModulo").val("");
+    $("#descripcionM").val("");
+    $("#horasTotalesM").val("");
+    $("#horasSemanales").val("");
+    $("#curso").val("");
+}
+
+function onCloseModalAltaGrupos(){
+    $("#denominacion").val("");
+}
+
 function onLoadBody(){
     this.cargarProfesores();
+    this.cargarAlumnos();
+    this.cargarCiclos();
+    this.cargarModulos();
+    this.cargarCentros();
+    this.cargarGrupos();
 }
