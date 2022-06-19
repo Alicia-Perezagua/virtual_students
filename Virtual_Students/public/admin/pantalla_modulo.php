@@ -1,18 +1,14 @@
 <?php include "header.php" ?>
-<body class="body-modulo">
-    <div class="container-fluid navbar p-0 m-0">
-        <ul class="d-flex flex-row justify-content-around align-items-center w-100 h-100 p-0 m-0">
-            <a class="enlaces-principales h-100 rounded" href="./index.php"><li class="list-unstyled p-0 m-0 h-100 home d-flex justify-content-center align-items-center"><i class="fa fa-home" aria-hidden="true"></i></li></a>
-            <a class="enlaces-principales h-100 rounded" href="./login.php"><li class="inicio-sesion list-unstyled p-0 m-0 h-100 d-flex justify-content-center align-items-center">Iniciar Sesión</li></a>
-        </ul>
+<body id="body-modulo" class="body-modulo" onload="onLoadIndex()">
+    <div id="menu_pantalla_modulos" class='container-fluid navbar p-0 m-0'>
     </div>
     <div class="tranparencia-modulo">
-        <h3>"Modulo de Ejemplo"</h3>
+        <h3>Bases de Datos</h3>
         <nav aria-label="breadcrumb" class="breadcrumbs_menu">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-                <li class="breadcrumb-item"><a href="#">Categoría</a></li>
-                <li class="breadcrumb-item active">Página actual</li>
+                <li class="breadcrumb-item"><a href="#">Mis modulos</a></li>
+                <li class="breadcrumb-item active">Bases de Datos</li>
             </ol>
         </nav>
         <div id="accordion" class="container">
@@ -82,9 +78,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="addRecurso w-100 p-0 m-0">
-                                <button class="addNewRecurso" data-toggle="modal" data-target="#nuevoRecurso"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Añadir Recurso</button>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -112,7 +105,7 @@
                                 <div class="col-2"></div>
                                 <h5 class="titulo-tarea col-4">Tarea 1 </h5>
                                 <div class="col-2 h-100"><button class="botones-modulos w-75 h-100"><a class="archivo_descargable" href="./images/Vsts.png" download="Imagen 1"><i class="fa fa-download" aria-hidden="true"></i></a></button></div>
-                                <div class="col-2 h-100"><button type="button" class="botones-modulos w-75 h-100" data-toggle="modal" data-target="#entregarTarea">ENTREGAR</button></div>
+                                <div class="col-2 h-100"><button type="button" class="switchBoton botones-modulos w-75 h-100" data-toggle="modal" data-target="#entregarTarea">ENTREGAR</button></div>
                                 <div class="col-2 h-100"><button class="boton-descripcion w-75 h-100 btn btn-link collapsed" data-toggle="collapse" data-target="#descripcion-tarea" aria-expanded="false" aria-controls="descripcion-tarea">
                                 <i class="fa fa-angle-down" aria-hidden="true"></i>
                                 </button></div>
@@ -127,7 +120,7 @@
                                 <div class="col-2"></div>
                                 <h5 class="titulo-tarea  col-4">Tarea 1 </h5>
                                 <div class="col-2 h-100"><button class="botones-modulos w-75 h-100"><a class="archivo_descargable" href="./images/Vsts.png" download="Imagen 1"><i class="fa fa-download" aria-hidden="true"></i></a></button></div>
-                                <div class="col-2 h-100"><button type="button" class="botones-modulos w-75 h-100" data-toggle="modal" data-target="#entregarTarea">ENTREGAR</button></div>
+                                <div class="col-2 h-100"><button type="button" class="switchBoton botones-modulos w-75 h-100" data-toggle="modal" data-target="#entregarTarea">ENTREGAR</button></div>
                                 <div class="col-2 h-100"><button class="boton-descripcion w-75 h-100 btn btn-link collapsed" data-toggle="collapse" data-target="#descripcion-tarea-2" aria-expanded="false" aria-controls="descripcion-tarea-2">
                                 <i class="fa fa-angle-down" aria-hidden="true"></i>
                                 </button></div>
@@ -142,7 +135,7 @@
                                 <div class="col-2"></div>
                                 <h5 class="titulo-tarea col-4">Tarea 1 </h5>
                                 <div class="col-2 h-100"><button class="botones-modulos w-75 h-100"><a class="archivo_descargable" href="./images/Vsts.png" download="Imagen 1"><i class="fa fa-download" aria-hidden="true"></i></a></button></div>
-                                <div class="col-2 h-100"><button type="button" class="botones-modulos w-75 h-100" data-toggle="modal" data-target="#entregarTarea">ENTREGAR</button></div>
+                                <div class="col-2 h-100"><button type="button" class="switchBoton botones-modulos w-75 h-100" data-toggle="modal" data-target="#entregarTarea">ENTREGAR</button></div>
                                 <div class="col-2 h-100"><button class="boton-descripcion w-75 h-100 btn btn-link collapsed" data-toggle="collapse" data-target="#descripcion-tarea-3" aria-expanded="false" aria-controls="descripcion-tarea-3">
                                 <i class="fa fa-angle-down" aria-hidden="true"></i>
                                 </button></div>
@@ -153,11 +146,6 @@
                                 </div>
                             </div>
                         </div>
-
-                        <div class="addTareas w-100 p-0 m-0">
-                                <button class="addNewTareas" data-toggle="modal" data-target="#nuevaTarea"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Añadir Tarea</button>
-                        </div>
-
                     </div>
                 </div>
             </div>
@@ -241,6 +229,27 @@
                             <label class="p-2" for="">Recurso: &nbsp; <i class="fa fa-arrow-down" aria-hidden="true"></i></label>
                             <div class="border border-dark ml-2 mb-2 d-flex flex-row align-items-center justify-content-center h-25" id="drop-zone" ondrop="dropHandler(event);" ondragover="dragOverHandler(event);" ondragleave="dragLeave(event)"><p id="mensaje">Arrastra aquí tus archivos</p></div>
                         </form>
+                    </div>
+
+                    <div class="modal-footer d-flex flex-row align-content-center">
+                        <button type="button" class="btn btn-success" data-dismiss="modal">Añadir</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade w-100 h-100" id="registroEntregas">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+
+                    <div class="modal-header d-flex flex-row align-items-center">
+                        <h4 class="modal-title">Registro de Tareas</h4>
+                    </div>
+
+                    <div class="modal-body">
+                        
                     </div>
 
                     <div class="modal-footer d-flex flex-row align-content-center">

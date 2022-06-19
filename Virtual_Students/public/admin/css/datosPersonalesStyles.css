@@ -1,0 +1,8 @@
+.body_datos_personales{
+    width: 100%;
+    background-image: url("../images/uriel-sc-11KDtiUWRq4-unsplash.jpg");
+    background-size: cover;
+    background-position: top left;
+    background-repeat: no-repeat;
+    background-attachment: fixed; 
+}

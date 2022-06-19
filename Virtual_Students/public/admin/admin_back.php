@@ -77,7 +77,7 @@ function cargarProfesores(){
 function altaProfesores(){
     global $bd;
 
-    
+   try{ 
     $nrp = $_POST['nrp'];
     $salario = $_POST['salary'];
     $emailDocente = $_POST['email'];
@@ -92,6 +92,11 @@ function altaProfesores(){
     $datos -> execute();
 
     return "Profesor dado de alta";
+   } catch(PDOException $e) {
+
+    $e = "Ya existe el profesor";
+    return $e;
+   }
 }
 
 switch($funcion){

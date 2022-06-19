@@ -15,6 +15,8 @@
 <link rel="stylesheet" href="./css/menus_styles.css">
 <link rel="stylesheet" href="./css/modulosC_Styles.css">
 <link rel="stylesheet" href="./css/adminStyles.css">
+<link rel="stylesheet" href="./css/datosPersonalesStyles.css">
+
 
 <!-- jQuery library -->
 
@@ -33,5 +35,8 @@
 <script src="./js/pruebas.js"></script>
 <script src="./js/administracion.js"></script>
 <script src="./js/responsive.js"></script>
-<title>Administrador CMS</title>
+<script src="./js/funciones_login.js"></script>
+<script src="./js/funciones_index.js"></script>
+<script src="./js/funciones_menu.js"></script>
+<title>Virtual Students</title>
 </head>

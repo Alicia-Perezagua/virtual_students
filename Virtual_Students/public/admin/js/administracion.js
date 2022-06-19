@@ -133,7 +133,7 @@ function altaProfesores(){
 
     if(idUser === "" || nrp === "" || emailDocente === ""){
         $("#alta-toast-text").text("Debes rellenar todos los campos obligatorios");
-        $('#alta-toast').toast('show');
+        $('#toast-alta').toast('show');
     } else {
         var peticion = $.ajax({
             url: "./admin_back.php",

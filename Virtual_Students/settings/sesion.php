@@ -1,5 +1,5 @@
 <?php
-$ajax=null;
+$ajax=$_POST['funcion'];
     // usuario
     session_start();
     function abrir_sesion($id,$rol)
@@ -16,16 +16,16 @@ $ajax=null;
     }
     function sesion_usuario(){
         if(isset($_SESSION['id'])){
-            $fin=$_SESSION['id'];
+            $fin = $_SESSION['id'];
         }else{
-            $fin=null;
+            $fin = "null";
         }
-        return $fin ;
+        return $fin;
     }
     function get_rol(){
-        return $_SESSION['rol']
+        return $_SESSION['rol'];
     }
-    function out_usuario_id(){
+    function get_id(){
         return $_SESSION['id'];
     }
     function out_usuario_rol(){
@@ -51,13 +51,16 @@ $ajax=null;
 
     switch($ajax){
         case "recogerRol":
-            echo out_usuario_rol();
+            echo get_rol();
             break;
         case "recogerId":
-            echo out_usuario_id();
+            echo get_id();
             break;
         case "recogerError":
             echo out_error();
+            break;
+        case "recogerSesion": 
+            echo sesion_usuario();
             break;
     }
 ?>
