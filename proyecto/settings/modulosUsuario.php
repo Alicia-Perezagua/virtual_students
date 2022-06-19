@@ -31,7 +31,8 @@
         while($tarea = $tareas->fetch()){
             $modulo = [
                 "id_tarea" => $tarea["id_modulo"],
-                "nombre" => $tarea["nombre_modulo"]
+                "nombre" => $tarea["nombre_modulo"],
+                "modulo"=>$tarea["id_modulo"]
             ];
     
             $tarea_array.array_push($modulo);
@@ -39,6 +40,7 @@
         null_error();
         return $tarea_array;
     }
+    
     switch ($function){
         case "cabecera":
             echo cabecera();

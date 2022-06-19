@@ -23,7 +23,7 @@ $ajax=null;
         return $fin ;
     }
     function get_rol(){
-        return $_SESSION['rol']
+        return $_SESSION['rol'];
     }
     function out_usuario_id(){
         return $_SESSION['id'];

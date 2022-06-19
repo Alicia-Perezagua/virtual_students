@@ -37,7 +37,8 @@
             return $datos_array;
         }
         function ejecutarCambioUsuario(){
-            global $db;
+            try{
+                global $db;
             $id_usuario=$_POST['id_usuario'];
             $username=$_POST['username'];
             $_password=$_POST['_password'];
@@ -76,13 +77,66 @@
             $datos -> bindParam(1, $categoria, PDO::PARAM_STR, 255);
             $datos -> execute();
             null_error();
+            return true;
+            }catch(Exception $e){
+                return $e;
+            }
         }
+        function modulos(){
+            try{
+                global $db;
+                $id_modulo=$_POST['id_modulo'];
+                $nombre_modulo=$_POST['nombre_modulo'];
+                $descripcion=$_POST['descripcion'];
+                $horas_totales=$_POST['horas_totales'];
+                $horas_semanales=$_POST['horas_semanales'];
+                $curso=$_POST['curso'];
+                $datos = $db -> prepare("call set_modulo(?,?,?,?,?,?)");
+                $datos -> bindParam(1, $id_modulo, PDO::PARAM_INT, 255);
+                $datos -> bindParam(1, $nombre_modulo, PDO::PARAM_STR, 255);
+                $datos -> bindParam(1, $descripcion, PDO::PARAM_STR, 255);
+                $datos -> bindParam(1, $horas_totales, PDO::PARAM_INT, 255);
+                $datos -> bindParam(1, $horas_semanales, PDO::PARAM_INT, 255);
+                $datos -> bindParam(1, $curso, PDO::PARAM_STR, 255);
+                return true;
+            }catch(Exception $e){
+                return $e;
+            }
+        } 
+        function ciclos(){
+            try{
+            global $db;
+            $id_ciclo =$_POST['id_modulo'];
+            $nombre_ciclo=$_POST['nombre_modulo'];
+            $descripcion=$_POST['descripcion'];
+            $num_cursos=$_POST['horas_totales'];
+            $horas_totales=$_POST['horas_semanales'];
+            $familia_profesional=$_POST['curso'];
+            $datos = $db -> prepare("call set_modulo(?,?,?,?,?,?)");
+            $datos -> bindParam(1, $id_ciclo , PDO::PARAM_INT, 255);
+            $datos -> bindParam(1, $nombre_ciclo, PDO::PARAM_STR, 255);
+            $datos -> bindParam(1, $descripcion, PDO::PARAM_STR, 255);
+            $datos -> bindParam(1, $num_cursos, PDO::PARAM_INT, 255);
+            $datos -> bindParam(1, $horas_totales, PDO::PARAM_INT, 255);
+            $datos -> bindParam(1, $familia_profesional, PDO::PARAM_STR, 255);
+            return true;
+            }catch(Exception $e){
+                return $e;
+            }
+        }
+
         switch ($function){
             case "darDatos":
                 echo darDatosUsuario();
                 break;
             case "ejecutarCambioUsuario":
                 echo ejecutarCambioUsuario();
+                break;
+            case "modulos":
+                echo modulos();
+                break;
+            case "ciclos":
+                echo ciclos();
                 break;
         }
     }else{
