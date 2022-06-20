@@ -3,12 +3,12 @@
     <div id="menu_pantalla_modulos" class='container-fluid navbar p-0 m-0'>
     </div>
     <div class="tranparencia-modulo">
-        <h3>Bases de Datos</h3>
+        <h3 id="tituloPantalla"></h3>
         <nav aria-label="breadcrumb" class="breadcrumbs_menu">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">Inicio</a></li>
                 <li class="breadcrumb-item"><a href="#">Mis modulos</a></li>
-                <li class="breadcrumb-item active">Bases de Datos</li>
+                <li class="breadcrumb-item active" id="elementoBreadcrumbs"></li>
             </ol>
         </nav>
         <div id="accordion" class="container">

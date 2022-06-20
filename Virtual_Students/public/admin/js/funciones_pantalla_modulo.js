@@ -16,15 +16,9 @@ function onLoadIndex(){
                         "<button type='button' class='enlaces-principales drop-button dropdown-toggle h-100' data-toggle='dropdown'>" +
                         "Mis modulos" +
                         "</button>" +
-                        "<div class='dropdown-menu'>" +
+                        "<div class='dropdown-menu' id='insertarUsuarios'>" +
                             "<a class='dropdown-item' href='#'>Todos los modulos</a>" +
-                            "<div class='dropdown-divider'></div>" +
-                            "<a class='dropdown-item' href='./pantalla_modulo.php'>Bases de Datos</a>" +
-                            "<a class='dropdown-item' href='./pantalla_modulo.php'>Sistemas Informáticos</a>" +
-                            "<a class='dropdown-item' href='./pantalla_modulo.php'>FOL</a>" +
-                            "<a class='dropdown-item' href='./pantalla_modulo.php'>Entornos de Desarrollo</a>" +
-                            "<a class='dropdown-item' href='./pantalla_modulo.php'>Lenguaje de Marcas</a>" +
-                            "<a class='dropdown-item' href='./pantalla_modulo.php'>Programación</a>" + 
+                            "<div class='dropdown-divider'></div>" + 
                         "</div>" + 
                     "</div>" + 
                     "<a class='enlaces-principales h-100 rounded' href='./login.php'><li class='inicio-sesion list-unstyled p-0 m-0 h-100 d-flex justify-content-center align-items-center'>Calendario</li></a>" +
@@ -95,51 +89,68 @@ function onLoadIndex(){
                 $(".switchBoton").attr("data-target", "#registroEntregas");
                 $(".switchBoton").text("VER ENTREGAS");
             }
+            rellenarMenuPM();
+            getModulosById();
         }
-    })
+    }); 
 }
 
-function entregarTarea(){
-    
-}
 
-function pedirDatos(){
-    var peticionDatos = $.ajax({
-        url: "pruebas_backend.php",
+function rellenarMenuPM(){
+    var peticio1 = $.ajax({
+        url: "../../settings/modulosUsuario.php", 
         type: "POST", 
+        dataType: "json", 
         async: true,
+        data: {
+            funcion: "getModulos"
+        },
 
         success: function(data){
             if(data){
-                $("#recurso1").attr("href", data);
-            } else {
-                console.log("NO DATA");
+                let idModulo; 
+                let nombreModulo;
+                for(var i = 0; i < data.length; i++){
+                    for(var j = 0; j < data.length; i++){
+                        idModulo = data[i][j].id_modulo;
+                        nombreModulo = data[i][j].nombre;
+                        console.log(idModulo); 
+                        console.log(nombreModulo);
+                        let options = "<a class='dropdown-item' onclick='recogerModulo(this.id)' id='" + idModulo + "'>" + nombreModulo + "</a>";
+                        console.log(options);
+                        $("#insertarUsuarios").append(options);
+                    }                         
+                }
             }
         }
     })
 }
 
-// function prueba(){
-//     $(".addRecurso").css("display", "flex");
-//     $(".addRecurso").css("flex-direction", "row"); 
-//     $(".addRecurso").css("justify-content", "center");
-// }
+function getModulosById(){
+    let cookie = document.cookie;
+    console.log(cookie); 
+    let cookieArr = cookie.split(";");
+    console.log(cookieArr); 
+    let cookieModulo = cookieArr[1].split("=");
+    console.log(cookieModulo); 
+    id_modulo = cookieModulo[1];
+    console.log(id_modulo); 
 
-// function recursoNuevo(){
-//     var infoTarea = "<div class='recurso-nueva d-flex flex-row align-items-center  p-0 m-0'>" +
-//                         "<div class='col-2'></div>" +
-//                         "<h5 class='titulo-recurso col-4'>Recurso 1 </h5>" +
-//                         "<div class='col-4 h-100 d-flex flex-row justify-content-center'><button class='botones-modulos w-75 h-100'><a id='recurso1' class='archivo_descargable' href='./pruebas_backend.php' download='Documento 1'><i class='fa fa-download' aria-hidden='true'></i></a></button></div>" +
-//                         "<div class='col-2 h-100'><button class='boton-descripcion w-75 h-100 btn btn-link collapsed' data-toggle='collapse' data-target='#descripcion-recurso' aria-expanded='false' aria-controls='descripcion-recurso'>" +
-//                         "<i class='fa fa-angle-down' aria-hidden='true'></i>" +
-//                         "</button></div>" +
-//                     "</div>" +
-//                     "<div id='descripcion-recurso' class='collapse'>" +
-//                         "<div class='d-flex flex-row justify-content-center'>" +
-//                             "<p class='descripcion'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor, corrupti laboriosam omnis dolores eaque accusamus nesciunt voluptates nam veniam. Dolor molestias aut animi, ipsa at voluptatem doloremque molestiae perferendis magni!</p>" +
-//                         "</div>" +
-//                     "</div>";
+    var peticion1 = $.ajax({
+        url: "../../settings/modulosUsuario.php", 
+        type: "POST", 
+        dataType: "json", 
+        async: true,
+        data: {
+            idModulo: id_modulo,
+            funcion: "getModulosById"
+        },
 
-//     $("#contenedor-recursos").append(infoTarea);
-
-// }
+        success: function(data){
+            if(data){
+                $("#tituloPantalla").text(data[0].nombre_modulo); 
+                $("#elementoBreadcrumbs").text(data[0].nombre_modulo);
+            }
+        }
+    })
+}

@@ -1,3 +1,7 @@
+function onLoad(){
+    this.cargarMenus();
+}
+
 function cargarMenus(){
     console.log(document.cookie);
     // var newCookies = document.cookie.slice(0, 26);
@@ -47,15 +51,9 @@ function cargarMenus(){
                                     "<button type='button' class='enlaces-principales drop-button dropdown-toggle h-100' data-toggle='dropdown'>" +
                                     "Mis modulos" +
                                     "</button>" +
-                                    "<div class='dropdown-menu'>" +
+                                    "<div class='dropdown-menu' id='cargarModulos'>" +
                                         "<a class='dropdown-item' href='#'>Todos los modulos</a>" +
                                         "<div class='dropdown-divider'></div>" +
-                                        "<a class='dropdown-item' href='./pantalla_modulo.php'>Bases de Datos</a>" +
-                                        "<a class='dropdown-item' href='./pantalla_modulo.php'>Sistemas Informáticos</a>" +
-                                        "<a class='dropdown-item' href='./pantalla_modulo.php'>FOL</a>" +
-                                        "<a class='dropdown-item' href='./pantalla_modulo.php'>Entornos de Desarrollo</a>" +
-                                        "<a class='dropdown-item' href='./pantalla_modulo.php'>Lenguaje de Marcas</a>" +
-                                        "<a class='dropdown-item' href='./pantalla_modulo.php'>Programación</a>" + 
                                     "</div>" + 
                                 "</div>" + 
                                 "<a class='enlaces-principales h-100 rounded' href='./login.php'><li class='inicio-sesion list-unstyled p-0 m-0 h-100 d-flex justify-content-center align-items-center'>Calendario</li></a>" +
@@ -117,10 +115,41 @@ function cargarMenus(){
                                "</div>" +
                             "</ul>" +
                         "</div>");
-                        } 
+                        }
+                        rellenarMenu()
                     }
                 });
             }
         }
     });
+}
+
+function rellenarMenu(){
+    var peticio1 = $.ajax({
+        url: "../../settings/modulosUsuario.php", 
+        type: "POST", 
+        dataType: "json", 
+        async: true,
+        data: {
+            funcion: "getModulos"
+        },
+
+        success: function(data){
+            if(data){
+                let idModulo; 
+                let nombreModulo;
+                for(var i = 0; i < data.length; i++){
+                    for(var j = 0; j < data.length; i++){
+                        idModulo = data[i][j].id_modulo;
+                        nombreModulo = data[i][j].nombre;
+                        console.log(idModulo); 
+                        console.log(nombreModulo);
+                        let options = "<a class='dropdown-item' id='" + idModulo + "' onclick='recogerModulo(this.id)'>" + nombreModulo + "</a>";
+                        console.log(options);
+                        $("#cargarModulos").append(options);
+                    }                         
+                }
+            }
+        }
+    })
 }

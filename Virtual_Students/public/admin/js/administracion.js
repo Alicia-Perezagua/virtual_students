@@ -118,6 +118,37 @@ function cargarProfesores(){
                         segundo_apellido = data[i][j].segundo_apellido;
                         let options = "<option value='" + idUsuarioBack +"'>" + nombre_user + " " + primer_apellido + " " + segundo_apellido + "</option>";
                         $("#idUsuario").append(options);
+                    }                  
+                }
+            }
+        }
+    });
+}
+
+function cargarProfesores2(){
+    var peticion = $.ajax({
+        url: "../../settings/admin.php", 
+        type: "POST", 
+        dataType: "json", 
+        async: true,
+        
+        data: {
+            funcion: "cargarProfesores2"
+        },
+
+        success: function(data){
+            if(data){
+                let idProfesor;
+                let nombre_profesor;
+                let primer_apellido;
+                let segundo_apellido;
+                for(var i = 0; i < data.length; i++){
+                    for(var j = 0; j < data.length; i++){
+                        idProfesor = data[i][j].id_profesor;
+                        nombre_profesor = data[i][j].nombre;
+                        primer_apellido = data[i][j].primer_apellido;
+                        segundo_apellido = data[i][j].segundo_apellido;
+                        let options = "<option value='" + idProfesor +"'>" + nombre_profesor + " " + primer_apellido + " " + segundo_apellido + "</option>";
                         $("#profesores").append(options);
                     }                  
                 }
@@ -240,6 +271,7 @@ function cargarCentros(){
                         nombre_centro = data[i][j].nombre_centro;
                         let options = "<option value='" + idCentro +"'>" + nombre_centro + "</option>";
                         $("#centros").append(options);
+                        $("#seleccionarCentro").append(options);
                     }                  
                 }
             }
@@ -464,7 +496,9 @@ function ciclosCentros(){
 
         success: function(data){
             if(data){
-                alert(data); 
+                alert(data);
+                $("#centros").val("");
+                $("#ciclos").val("");
             } else {
                 alert("No se ha podido realizar la asignación");
             }
@@ -485,7 +519,9 @@ function modulosCiclos(){
 
         success: function(data){
             if(data){
-                alert(data); 
+                alert(data);
+                $("#ciclos2").val("");
+                $("#modulos").val(""); 
             } else {
                 alert("No se ha podido realizar la asignación");
             }
@@ -507,9 +543,83 @@ function modulosGruposProfesor(){
 
         success: function(data){
             if(data){
-                alert(data); 
+                alert(data);
+                $("#profesores").val("");
+                $("#modulos2").val("");
+                $("#grupos").val(""); 
             } else {
                 alert("No se ha podido realizar la asignación");
+            }
+        }
+    });
+}
+
+function getCiclosByIdCentro(){
+    var peticion = $.ajax({
+        url: "../../settings/admin.php", 
+        type: "POST", 
+        dataType: "json", 
+        async: true,
+        
+        data: {
+            idCentro: $("#seleccionarCentro").val(),
+            funcion: "getCiclosByIdCentro"
+        },
+
+        success: function(data){
+            if(data){
+                let idCiclo;
+                let nombreCiclo;
+                let selectCurso = "<div class='d-flex flex-row justify-content-around'><label for='' class='col-3'>Seleccione el curso:<span class='requerido text-danger'>*</span>&nbsp;</label><select class='col-9' name='' id='seleccionarCurso' onchange='getModulosByIdCicloCurso()'><option value=''>-</option><option value='1º'>1º</option><option value='2º'>2º</option></select></div>";
+                let selectCiclos = "<div class='d-flex flex-row justify-content-around'><label for='' class='col-3'>Seleccione el ciclo:<span class='requerido text-danger'>*</span>&nbsp;</label><select class='col-9' name='' id='seleccionarCiclo'><option value=''>-</option></select></div>";
+                $("#matriculaciones_curso").append(selectCiclos);
+                $("#matriculaciones_curso").append(selectCurso);
+
+                for(var i = 0; i < data.length; i++){
+                    for(var j = 0; j < data.length; i++){
+                        idCiclo = data[i][j].id_ciclo;
+                        nombreCiclo = data[i][j].nombre_ciclo;
+                        let options = "<option value='" + idCiclo +"'>" + nombreCiclo + "</option>";
+                        $("#seleccionarCiclo").append(options);
+                        
+                    }                         
+                }
+            }
+        }
+    });
+}
+
+function getModulosByIdCicloCurso(){
+    var peticion = $.ajax({
+        url: "../../settings/admin.php", 
+        type: "POST", 
+        dataType: "json", 
+        async: true,
+        
+        data: {
+            idCiclo: $("#seleccionarCiclo").val(),
+            curso: $("#seleccionarCurso").val(),
+            funcion: "getModulosByIdCicloCurso"
+        },
+
+        success: function(data){
+            if(data){
+                let idModulo;
+                let nombreModulo;
+                let selectModulos = "<div class='d-flex flex-row justify-content-around'><label for='' class='col-3'>Seleccione el ciclo:<span class='requerido text-danger'>*</span>&nbsp;</label><select class='col-9' name='' id='seleccionarModulo'><option value=''>-</option></select></div>";
+                $("#matriculaciones_curso").append(selectModulos);
+
+                for(var i = 0; i < data.length; i++){
+                    for(var j = 0; j < data.length; i++){
+                        idModulo = data[i][j].id_modulo;
+                        nombreModulo = data[i][j].nombre_modulo;
+                        let options = "<option value='" + idModulo +"'>" + nombreModulo + "</option>";
+                        $("#seleccionarModulo").append(options);
+                        
+                    }                         
+                }
+            } else {
+                alert("Debe seleccionar un ciclo");
             }
         }
     });
@@ -675,6 +785,7 @@ function onCloseModalAltaGrupos(){
 
 function onLoadBody(){
     this.cargarProfesores();
+    this.cargarProfesores2()
     this.cargarAlumnos();
     this.cargarCiclos();
     this.cargarModulos();

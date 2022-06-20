@@ -10,6 +10,8 @@
         $grupos_arr = Array();
         $ciclos_arr = Array();
         $modulos_arr = Array();
+        $ciclosByCentro_arr = Array();
+        $modulosByCicloCurso_arr = Array();
         $bd = new ConexionDB();
         // function darDatosUsuario(){
         //     global $db;
@@ -103,7 +105,7 @@
         function cargarProfesores2(){
             global $bd, $profesores_arr_2;
 
-            $sql = "SELECT profesores.id_profesor, usuarios.nombre_usuario FROM usuarios INNER JOIN profesores ON usuarios.id_user = profesores.id_user_fk";
+            $sql = "SELECT profesores.id_profesor, usuarios.nombre_usuario, usuarios.primer_apellido, usuarios.segundo_apellido FROM usuarios INNER JOIN profesores ON usuarios.id_user = profesores.id_user_fk";
             $res = $bd -> search($sql);
             $profesores = count($res);
         
@@ -111,7 +113,9 @@
         
                 $datos = [
                     "id_profesor" => $res[$i]["id_profesor"],
-                    "nombre" => $res[$i]["nombre_usuario"], 
+                    "nombre" => $res[$i]["nombre_usuario"],
+                    "primer_apellido" => $res[$i]["primer_apellido"],
+                    "segundo_apellido" => $res[$i]["segundo_apellido"],  
                 ]; 
         
                 array_push($profesores_arr_2, array($datos));
@@ -360,6 +364,55 @@
             return "Asignación Completada";
         }
 
+        function getCiclosByIdCentro(){
+            global $bd, $ciclosByCentro_arr; 
+
+            $idCentro = $_POST["idCentro"];
+
+            $sql = "SELECT correspondencia_ciclos_centros.id_ciclo_fk, ciclos_formativos.nombre_ciclo  FROM correspondencia_ciclos_centros INNER JOIN ciclos_formativos ON correspondencia_ciclos_centros.id_ciclo_fk = ciclos_formativos.id_ciclo WHERE id_centro_fk = " . $idCentro. ";";
+            $res = $bd -> search($sql);
+                $ciclos = count($res);
+            
+                for($i = 0; $i < $ciclos; $i++){
+            
+                    $datos = [
+                        "id_ciclo" => $res[$i]["id_ciclo_fk"],
+                        "nombre_ciclo" => $res[$i]["nombre_ciclo"], 
+                    ]; 
+            
+                    array_push($ciclosByCentro_arr, array($datos));
+            
+                }
+        
+            return $ciclosByCentro_arr;
+        
+        }
+
+        function getModulosByIdCicloCurso(){
+            global $bd, $modulosByCicloCurso_arr; 
+
+            $idCiclo = $_POST["idCiclo"];
+            $curso = $_POST["curso"];
+
+            $sql = "SELECT correspondecia_ciclos_modulos.id_modulo_fk, modulos.nombre_modulo  FROM correspondecia_ciclos_modulos INNER JOIN modulos ON correspondecia_ciclos_modulos.id_modulo_fk = modulos.id_modulo WHERE correspondecia_ciclos_modulos.id_ciclo_fk = " . $idCiclo. " AND modulos.curso = '" . $curso . "';";
+            $res = $bd -> search($sql);
+            $modulos = count($res);
+            
+                for($i = 0; $i < $modulos; $i++){
+            
+                    $datos = [
+                        "id_modulo" => $res[$i]["id_modulo_fk"],
+                        "nombre_modulo" => $res[$i]["nombre_modulo"], 
+                    ]; 
+            
+                    array_push($modulosByCicloCurso_arr, array($datos));
+            
+                }
+        
+            return $modulosByCicloCurso_arr;
+        
+        }
+
         function ejecutarCambioUsuario(){
             global $db;
 
@@ -412,6 +465,9 @@
             case "cargarProfesores": 
                 echo json_encode(cargarProfesores());
                 break;
+            case "cargarProfesores2": 
+                echo json_encode(cargarProfesores2());
+                break;
             case "cargarAlumnos": 
                 echo json_encode(cargarAlumnos());
                 break;
@@ -453,6 +509,12 @@
                 break;
             case "modulosGruposProfesor": 
                 echo modulosGruposProfesor();
+                break;
+            case "getCiclosByIdCentro": 
+                echo json_encode(getCiclosByIdCentro());
+                break;
+            case "getModulosByIdCicloCurso": 
+                echo json_encode(getModulosByIdCicloCurso());
                 break;
             case "ejecutarCambioUsuario":
                 echo ejecutarCambioUsuario();

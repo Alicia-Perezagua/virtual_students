@@ -232,8 +232,8 @@
                 </fieldset>
                 <fieldset class="p-2 m-2 border border-dark rounded">
                     <legend class="w-25 flex flex-row justify-content-center">Datos Curso</legend>
-                    <form action="" class="d-flex flex-column justify-content-center align-items-around h-100">
-                        <div class="d-flex flex-row justify-content-around"><label for="" class="col-3">Denominación del grupo:<span class="requerido text-danger">*</span>&nbsp;</label><input class="col-9" type="text" name="" id="denominacion"></div>
+                    <form action="" class="d-flex flex-column justify-content-center align-items-around h-100" id="matriculaciones_curso">
+                        <div class="d-flex flex-row justify-content-around"><label for="" class="col-3">Seleccione el centro:<span class="requerido text-danger">*</span>&nbsp;</label><select class="col-9" name="" id="seleccionarCentro" onchange="getCiclosByIdCentro()"><option value="">-</option></select></div>
                     </form>
                 </fieldset>
             </div>          
